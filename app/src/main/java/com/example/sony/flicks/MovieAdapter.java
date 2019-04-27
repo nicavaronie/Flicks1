@@ -10,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.example.sony.flicks.models.Config;
 import com.example.sony.flicks.models.Movie;
 
@@ -80,7 +79,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
                     .load( imageUrl )
                     .bitmapTransform( new RoundedCornersTransformation( context, 15, 0 ) )
                     .placeholder( placeholderId )
-                    .errors( placeholderId )
+                    .error( placeholderId )
                     .into( imageView );
         }
      // returns to the number of items in the list

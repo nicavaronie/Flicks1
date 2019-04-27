@@ -81,7 +81,7 @@ public class MovieListActivity extends AppCompatActivity {
                     // iterate through result set and create Movies objects
                     for (int i =0; i < results.length(); i++) {
                         Movie movie = new Movie(results.getJSONObject(i));
-                        movies.add(movie);
+                        movies.add( movie );
                         // notify adapter that a row was added
                         adapter.notifyItemInserted(movies.size() -1);
                     }
