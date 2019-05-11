@@ -26,7 +26,7 @@ import cz.msebera.android.httpclient.Header;
 public class MovieListActivity extends AppCompatActivity {
     // constants
     // the base URL for the API
-    public  final static String API_BASE_URL = "http://api.themoviedb.org/3";
+    public  final static String API_BASE_URL = "https://api.themoviedb.org/3";
     // the parameter name for the API key
     public  final static String API_KEY_PARAM = "api_key";
     // tag for logging from this activity
@@ -55,7 +55,6 @@ public class MovieListActivity extends AppCompatActivity {
         movies = new ArrayList<>();
         // initialize the adapter -- movies array cannot be reinitialized after this point
         adapter = new MovieAdapter(movies);
-
         // resolve the recycler view and comment a layout manager and the adapter
         rvMovies = (RecyclerView) findViewById(R.id.rvMovies);
         rvMovies.setLayoutManager(new LinearLayoutManager(this));
@@ -67,7 +66,7 @@ public class MovieListActivity extends AppCompatActivity {
     }
     // get the list of currently playing movies from the API
     private void getNowPlaying() { // create the URL
-        String url = API_BASE_URL + "movie_now_playing";
+        String url = API_BASE_URL + "/movie/now_playing";
         // set the request parameters
         RequestParams params = new RequestParams();
         params.put(API_KEY_PARAM, getString(R.string.api_key)); // API key, always required
@@ -87,26 +86,28 @@ public class MovieListActivity extends AppCompatActivity {
                     }
                     Log.i(TAG, String.format("Loaded %s movies", results.length()));
                 } catch (JSONException e) {
-                    logErrors("Fail to parse now playing movie", e,true);
+                    logError("Fail to parse now playing movie", e,true);
                 }
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-                logErrors("Fail to get data from now_playing",throwable,true);
+                logError("Fail to get data from now_playing",throwable,true);
             }
         });
     }
     // get the configuration from the API
     private void getConfiguration(){
-
+        String url = API_BASE_URL + "/configuration";
+        RequestParams params = new RequestParams(  );
+        params.put( API_KEY_PARAM,getString(R.string.api_key));
         client.get(url, params,new JsonHttpResponseHandler(){
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 try {
                     config = new Config(response);
                     Log.i(TAG,
-                            String.format("Loaded configuration with imageBaseUrl % and posterSize %",
+                            String.format("Loaded configuration with imageBaseUrl %s and posterSize %s",
                                     config.getImageBaseUrl(),
                                     config.getPosterSize()));
                     // pass config to adapter
@@ -114,20 +115,20 @@ public class MovieListActivity extends AppCompatActivity {
                     // get the now playing movie list
                     getNowPlaying();
                 } catch (JSONException e) {
-                   logErrors("Failed parsing configuration", e, true);
+                   logError("Failed parsing configuration", e, true);
 
                 }
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-                logErrors("Failed getting configuration", throwable, true);
+                logError("Failed getting configuration", throwable, true);
             }
         });
     }
 
     // handle errors, log and alert user
-    private void logErrors(String message, Throwable error, boolean alertUser){
+    private void logError(String message, Throwable error, boolean alertUser){
         // always log the error
         Log.e(TAG, message,error);
         // alert the user to avoid silent errors

@@ -11,11 +11,10 @@ public class Config {
     String posterSize;
     // the backdrop size to use when fetching images
     String backdropSize;
-    private JSONArray images;
 
 
     public Config(JSONObject object) throws JSONException {
-        JSONObject images = object.getJSONObject("secure_base_url");
+        JSONObject images = object.getJSONObject("images");
         // get the image base url
         imageBaseUrl = images.getString("secure_base_url");
         // get the poster size
