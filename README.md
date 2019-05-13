@@ -4,7 +4,7 @@
 
 Time spent: **8** hours spent in total
 
-Submitted by: **Roselin Germain**
+Submitted by: **Roody Altidort**
 
 ## User Stories
 
@@ -16,8 +16,8 @@ The following **optional** features are implemented:
 
 * [ ] For each movie displayed, user can see the following details:
   * [ ] Title, Poster Image, Overview (Portrait mode)
-  * [ ] Title, Backdrop Image, Overview (Landscape mode)
-* [ ] Display a nice default [placeholder graphic](https://guides.codepath.org/android/Displaying-Images-with-the-Glide-Library#advanced-usage) for each image during loading
+  * [x ] Title, Backdrop Image, Overview (Landscape mode)
+* [x ] Display a nice default [placeholder graphic](https://guides.codepath.org/android/Displaying-Images-with-the-Glide-Library#advanced-usage) for each image during loading
 * [ ] Allow user to view details of the movie including ratings and popularity within a separate activity
 * [ ] Improved the user interface by experimenting with styling and coloring.
 * [ ] Apply rounded corners for the poster or background images using [Glide transformations](https://guides.codepath.org/android/Displaying-Images-with-the-Glide-Library#transformations)
@@ -32,7 +32,7 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+< https://imgur.com/a/NsTX4J5/>
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
